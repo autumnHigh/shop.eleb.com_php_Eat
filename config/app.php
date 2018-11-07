@@ -177,6 +177,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        //阿里云oss存储文件参数
+        Jacobcyl\AliOSS\AliOssServiceProvider::class,
+
+        //ueditor编辑器需要的参数
+        Overtrue\LaravelUEditor\UEditorServiceProvider::class,
+
     ],
 
     /*
@@ -227,5 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+
+
 
 ];
