@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admins;
 
 use App\Models\EveMember;
+use App\Models\Eveps;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -108,6 +109,7 @@ class EveMemberController extends Controller
 
     //显示活动列表
     public function index(){
+
        //$events= DB::table('events')->Paginate(5);
        $events= \App\Models\Event::where('prize_date','>=',date('Y-m-d',time()))->Paginate(5);
       // dd($events);
@@ -120,7 +122,7 @@ class EveMemberController extends Controller
        // dd($event);
         //通过传入的 试用活动id得到 试用活动数据
         $eve=DB::table('events')->where('id','=',$event)->first();
-        //dd($eve);
+
         //通过 试用活动数据得到奖品的数据
         $evps=DB::table('event_prizes')->where('events_id',$event)->get();
         $evpss=count($evps);
@@ -134,7 +136,21 @@ class EveMemberController extends Controller
    /*     DB::table('event_prizes')->where()->get();*/
         //把收集到的数据，放到页面中，进行查看=》》参与 试用
 
-        return view('evms.apply',compact('eve','evps','evpss','emss'));
+        //获得抽奖结果的数据 【中奖商户的信息】
+       // dump($event);
+           $evnts= Eveps::where('events_id','=',$event)->get();
+       // dump($evnts);
+
+        $evvps=[];
+        foreach($evnts as $et){
+           // dump($et->member_id);
+            $evvps[]=DB::table('users')->where('id','=',$et->member_id)->first();
+
+        }
+
+        //dump($evvps);
+
+        return view('evms.apply',compact('eve','evps','evpss','emss','evvps'));
 
     }
 }
