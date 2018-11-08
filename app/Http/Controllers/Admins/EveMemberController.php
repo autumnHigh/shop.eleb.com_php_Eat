@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Event;
 
 class EveMemberController extends Controller
 {
+
+    //添加权限
+    public function __construct(){
+        $this->middleware('auth',[
+            'except'=>['index'],
+        ]);
+    }
+
     //显示抽奖活动报名表单
     public function create(){
         //抽奖活动表
