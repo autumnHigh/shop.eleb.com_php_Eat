@@ -156,7 +156,7 @@ class EveMemberController extends Controller
 
         }
 
-        //dump($evvps);
+        //dd($evvps);
 
         return view('evms.apply',compact('eve','evps','evpss','emss','evvps'));
 

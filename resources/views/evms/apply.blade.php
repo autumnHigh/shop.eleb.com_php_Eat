@@ -23,8 +23,14 @@
 
 
     <h1>中奖人信息</h1>
-    @foreach($evvps as $eps)
-       <p><b>中奖人：{{$eps->name}}</b></p>
-    @endforeach
+
+    @if($eve->is_prize==1)
+
+        @foreach($evvps as $eps)
+            <p><b>中奖人：{{$eps->name}}</b></p>
+        @endforeach
+    @else
+        等待开奖
+    @endif
 </form>
 @endsection
