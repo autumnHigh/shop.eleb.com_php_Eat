@@ -12,8 +12,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-    //return redirect()->route('session.create');
+    //return view('welcome');
+    return view('session.create');
 });
 
 

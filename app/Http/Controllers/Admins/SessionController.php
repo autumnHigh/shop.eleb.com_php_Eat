@@ -27,12 +27,14 @@ class SessionController extends Controller
     public function store(Request $request){
 
          $this->validate($request,[
-             'name'=>'required',
-             'password'=>'required',
+             'name'=>'required|between:2,5',
+             'password'=>'required|between:2,8',
           /*   'captcha'=>'required|captcha',*/
         ],[
            'name.required'=>'用户民不能为空',
+           'name.between'=>'用户民位数不对',
            'password.required'=>'密码不能为空',
+           'password.between'=>'密码密码不对',
         /* 'captcha.required'=>'验证码不能为空',
          'captcha.captcha'=>'验证码错误',*/
          ]);
